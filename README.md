@@ -8,6 +8,4 @@ To run the program simply put it into an IDE of your choice and click run. It do
 The board is generated through the use of the recursive method. It gets a position and a value and tests if that value could work in that position. If it does then it goes to the next position and if it doesn’t then it tests the next value. If there are no more values then it goes to the previous position and tests the next value. This process repeats until the entire board is solved.
 
 Files: 
-README.md
-SudokuGenerator.java
-DesignDoc.pdf
+README.md          SudokuGenerator.java             DesignDoc.pdf
