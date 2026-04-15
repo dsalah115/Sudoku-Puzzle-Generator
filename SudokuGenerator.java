@@ -3,7 +3,7 @@ public class SudokuGenerator
     public static int[][] board = new int[9][9];
     public static void main(String[] args)
     {
-        testVal(0, 0, 1);
+        testVal(0, 0);
         
         printBoard();
     }
@@ -60,42 +60,42 @@ public class SudokuGenerator
             }
         }
         return false;
-}
+    }
+
+  
     
-    
-    public static boolean testVal(int row, int col, int val){
+        
+    public static boolean testVal(int row, int col){
+
         if (row == 9){
             return true;
         }
-        
-        if (val > 9){
-            board[row][col] = 0;
-            if (col == 0){
-                return testVal(row - 1, 8, board[row-1][8] + 1);
-            }
-            else{
-                return testVal(row, col - 1, board[row][col-1] + 1);
-            }
-        }
-        
-        if (numInRow(row, val) || numInCol(col, val) || numInBox(row, col, val)){
-            return testVal(row, col, val + 1);
-        }
-        
-        else{
-            board[row][col] = val;
-            if (col == 8){
-                if (testVal(row + 1, 0, 1)){
+    
+        int start = (int)(Math.random() * 9) + 1;
+    
+        for (int i = 0; i < 9; i++) {
+    
+            int num = (start + i - 1) % 9 + 1;
+    
+            if (!numInRow(row, num) && !numInCol(col, num) && !numInBox(row, col, num)) {
+    
+                board[row][col] = num;
+    
+                boolean next;
+                if (col == 8) {
+                    next = testVal(row + 1, 0);
+                } else {
+                    next = testVal(row, col + 1);
+                }
+    
+                if (next){
                     return true;
                 }
-            }
-            else{
-                if (testVal(row, col + 1, 1)){
-                    return true;
-                }
+                
+                board[row][col] = 0; 
             }
         }
-        
+    
         return false;
     }
 
